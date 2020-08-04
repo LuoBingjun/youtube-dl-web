@@ -14,4 +14,5 @@ class VideoInfo(Resource):
         video_url = args["url"]
         with youtube_dl.YoutubeDL() as ydl:
             result = ydl.extract_info(video_url, download=False)
-            return marshal(result, resource_fields)
+            return result
+            # return marshal(result, resource_fields)
