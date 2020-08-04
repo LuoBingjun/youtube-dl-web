@@ -6,7 +6,18 @@ import youtube_dl
 parser = reqparse.RequestParser()
 parser.add_argument('url', type=str, required=True, help='URL to the video')
 
-resource_fields = {'title': fields.String, 'description': fields.String, 'uploader': fields.String, 'thumbnail': fields.String, 'duration': fields.Float}
+resource_fields = {
+    'title': fields.String,
+    'description': fields.String,
+    'uploader': fields.String,
+    'thumbnail': fields.String,
+    'duration': fields.Float,
+    'formats': fields.List(fields.Nested({
+        'format': fields.String,
+        'format_id': fields.String,
+        'filesize': fields.Integer,
+        'ext': fields.String
+    }))}
 
 class VideoInfo(Resource):
     def get(self):
@@ -14,5 +25,4 @@ class VideoInfo(Resource):
         video_url = args["url"]
         with youtube_dl.YoutubeDL() as ydl:
             result = ydl.extract_info(video_url, download=False)
-            return result
-            # return marshal(result, resource_fields)
+            return marshal(result, resource_fields)
