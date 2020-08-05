@@ -20,7 +20,7 @@
 
       <b-row class="result" v-show="ok" align-h="center">
         <b-col cols="auto">
-          <VideoCard v-bind="result" />
+          <VideoCard v-bind="result" v-bind:url="url" />
         </b-col>
       </b-row>
     </b-container>
