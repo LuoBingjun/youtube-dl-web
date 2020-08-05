@@ -88,7 +88,7 @@ export default {
 
 <style>
 .search {
-  margin: 40px;
+  margin: 40px 0px;
 }
 
 .result {
