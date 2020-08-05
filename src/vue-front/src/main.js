@@ -13,6 +13,7 @@ Vue.use(VueRouter)
 import Home from './components/Home'
 
 import axios from 'axios';
+axios.defaults.baseURL = process.env.BASE_URL;
 Vue.prototype.$axios = axios;
 
 const routes = [
